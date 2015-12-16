@@ -1,5 +1,5 @@
 var fs = require('fs');
-var array = fs.readFileSync('inputs/day7.txt').toString().split(";");
+var array = fs.readFileSync('inputs/day7dummy.txt').toString().split(";");
 
 function serializeData(){
     //split each expressions into atoms and make a wire object
@@ -34,10 +34,19 @@ function evalWire(wire){
     switch (wire.gate){
         case null:
             console.log("BEFORE: "+wire.signal);
-            //console.log('undefined');
-            wire.signal = evalWire(wire.source1);
+            //find
+            var source = findByIdentifier(wire.source1);
+            if(typeof source.signal )
+            wire.signal = evalWire(source);
             console.log("AFTER: "+wire.signal);
             break;
+    }
+}
+
+function findByIdentifier(identifier){
+    for(i in array) {
+        if(array[i].identifier===identifier)
+            return array[i];
     }
 }
 
