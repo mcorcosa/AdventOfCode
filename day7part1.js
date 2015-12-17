@@ -1,3 +1,6 @@
+/**
+ * Created by user 60 on 12/17/2015.
+ */
 var fs = require('fs');
 var array = fs.readFileSync('inputs/day7.txt').toString().split(";");
 
@@ -30,7 +33,7 @@ function serializeData(){
 }
 
 function evalWire(wire){
-   //console.log(wire);
+    //console.log(wire);
     switch (wire.gate){
         case null:
             if(!isNaN(wire.source1)){
@@ -162,8 +165,5 @@ function findByIdentifier(identifier){
 }
 
 serializeData();
-//for(i in array) {
-//evalWire(array[i])}
-//console.log(array);
 
 evalWire(findByIdentifier('a'));
