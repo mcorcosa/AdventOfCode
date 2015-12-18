@@ -1,27 +1,43 @@
+var _ = require('lodash');
 var fs = require('fs');
-var array = fs.readFileSync('inputs/day8.txt').toString().split("\n");
-// var array = fs.readFileSync('inputs/day8dummy.txt').toString().split("\n");
-var codeCharacters = -1;
-var memoryCharacters = 0;
+var array = fs.readFileSync('inputs/day9.txt').toString().split('\r\n');
+var nodes = [];
+var roads = [];
 
-for (var i=0; i<array.length; i++){
-  codeCharacters += array[i].length-1;
-  console.log(array[i].length);
-  console.log(array[i]);
-  for (var j=0; j<array[i].length-1; j++){
-    if(array[i][j]==='\\'){
-      if(array[i][j+1]==='"'){
-        memoryCharacters--;
-      }
-      else if(array[i][j+1]==='x'){
-        memoryCharacters -=3;
-      }
+array = array.splice(0, array.length-1);
+
+function serializeData(){
+  for(var i=0; i<array.length ;i++){
+    var data = array[i].split(' ');
+    //console.log(data);
+    var road = {};
+    road.distance = parseInt(data[4]);
+    road.node1 = data[0];
+    road.node2 = data[2];
+    roads.push(road);
+    var node = data[0];
+    node.visited=false;
+    if(_.indexOf(nodes, node)<0){
+      nodes.push(node);
     }
-    console.log(j+": "+array[i][j]);
   }
-  console.log("\n");
 }
 
-console.log("code: "+codeCharacters);
-memoryCharacters = codeCharacters+memoryCharacters;
-console.log("mem: "+memoryCharacters);
+function findShortestRoad(startingNode){
+  var visitedNodes = [];
+  visitedNodes.push(startingNode);
+
+}
+
+function generateSolutions(){
+  //find shortest road for each starting node
+  for(var i in nodes){
+    findShortestRoad(nodes[i]);
+  }
+}
+
+serializeData();
+generateSolutions();
+
+// console.log(nodes);
+// console.log(roads);
