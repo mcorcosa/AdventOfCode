@@ -8,12 +8,12 @@ var y=0;
 function Point(x, y){
     this.x = x;
     this.y = y;
-};
+}
 
 //initial point
 var point = new Point(x,y);
 var visitedPoints = [point];
-console.log(input.length)
+console.log(input.length);
 
 for (var i=0;i<input.length;i++){
     console.log(input[i]);
@@ -34,14 +34,14 @@ for (var i=0;i<input.length;i++){
     var newPoint = new Point(x,y);
     if(!isInVisited(newPoint)) {
         visitedPoints.push(newPoint);
-        console.log("NEW HOUSE!")
+        console.log("NEW HOUSE!");
     }
     else{
-        console.log("ALREADY VISITED!")
+        console.log("ALREADY VISITED!");
     }
 }
 
-console.log(visitedPoints.length)
+console.log(visitedPoints.length);
 
 //checks if a point was already visited
 function isInVisited(point){
